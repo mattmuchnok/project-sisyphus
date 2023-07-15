@@ -10,7 +10,10 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
-  modules: ['@sidebase/nuxt-auth'],
+  modules: [
+    '@sidebase/nuxt-auth',
+    '@pinia/nuxt'
+  ],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     example: 'example',
@@ -20,5 +23,10 @@ export default defineNuxtConfig({
         clientSecret: 'undefined'
       }
     }
-  }
+  },
+  pinia: {
+    autoImports: [
+      'defineStore'
+    ],
+  },
 })
