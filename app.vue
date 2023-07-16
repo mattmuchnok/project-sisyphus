@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useSessionStore } from '@/store/session-store';
-const store = useSessionStore();
 
-store.hydrateSession();
+const store = useSessionStore();
 
 const dashboardLinks = [
   {
@@ -53,7 +52,7 @@ const otherLinks = [
   }, {
     label: 'Profile',
     avatar: {
-      src: store.session.user?.image ?? '',
+      src: store.user?.user_metadata.avatar_url ?? '',
     },
     to: '/profile'
   }];

@@ -2,7 +2,6 @@
 import { useSessionStore } from '@/store/session-store';
 
 const store = useSessionStore();
-
 const router = useRouter();
 </script>
 
@@ -12,12 +11,12 @@ const router = useRouter();
             <NuxtLink to="/">project sisyphus</NuxtLink>
         </h1>
         <div class="flex-shrink self-center cursor-pointer">
-            <div class="h-full" v-if="store.isLoggedIn" @click="router.push('/profile')">
-                <UTooltip :text="store.session.user?.name ?? ''">
-                    <UAvatar :src="store.session.user?.image ?? ''" alt="avatar" class="align-middle" />
+            <div class="h-full" v-if="store.user" @click="router.push('/profile')">
+                <UTooltip :text="store.user.user_metadata.name ?? ''">
+                    <UAvatar :src="store.user.user_metadata.avatar_url ?? ''" alt="avatar" class="align-middle" />
                 </UTooltip>
             </div>
-            <div class="h-full" v-if="!store.isLoggedIn">
+            <div class="h-full" v-if="!store.user">
                 <UButton @click="store.signIn()" color="white">
                     Log In
                 </UButton>

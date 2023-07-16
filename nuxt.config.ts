@@ -5,9 +5,9 @@ export default defineNuxtConfig({
     // pageTransition: { name: 'page', mode: 'out-in' }
   },
   modules: [
-    '@sidebase/nuxt-auth',
     '@pinia/nuxt',
-    '@nuxthq/ui'
+    '@nuxthq/ui',
+    '@nuxtjs/supabase',
   ],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {

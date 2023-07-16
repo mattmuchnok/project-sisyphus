@@ -1,5 +1,18 @@
 <script setup lang="ts">
-const thing: Ref<string> = ref("prayers")
+const client = useSupabaseClient()
+
+
+let { data: prayers, error } = await client
+    .from('prayer')
+    .select('*')
+
+if (error) {
+    console.error(error);
+}
+
+// const prayers = data as any[];
+
+console.log(prayers);
 </script>
 
 <template>
@@ -18,12 +31,11 @@ const thing: Ref<string> = ref("prayers")
         </div>
         <div>
             <a href="https://ui.nuxtlabs.com/layout/card" class="text-green-500">Cards</a>
-            <UCard>
+            <UCard v-for="prayer of prayers">
                 <template #header>
-                    Hunter
+                    {{ prayer.id }}
                 </template>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore aperiam nobis quia ut ullam, quos, iste
-                ipsum ad nihil vel accusantium iure inventore error nulla aliquam at libero illum. Recusandae!
+                {{ prayer.text }}
                 <template #footer>
                     Ok
                 </template>

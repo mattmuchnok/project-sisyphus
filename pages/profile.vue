@@ -9,7 +9,7 @@ const store = useSessionStore();
         <h2 class="my-2">
             Profile
         </h2>
-        <div class="flex items-center space-x-4" v-if="!store.session.user">
+        <div class="flex items-center space-x-4" v-if="!store.user">
             <USkeleton class="h-12 w-12 rounded-full" />
             <div class="space-y-2">
                 <USkeleton class="h-4 w-[250px]" />
@@ -17,16 +17,16 @@ const store = useSessionStore();
             </div>
         </div>
 
-        <div v-if="store.session.user">
+        <div v-if="store.user">
             <div>
-                <UAvatar :src="store.session.user?.image ?? ''" size="3xl" alt="avatar" class="align-middle" />
+                <UAvatar :src="store.user.user_metadata.avatar_url ?? ''" size="3xl" alt="avatar" class="align-middle" />
             </div>
             <div class="pt-2">
                 <h2 class=" text-green-500">
                     Name
                 </h2>
                 <div>
-                    {{ store.session.user?.name ?? '-' }}
+                    {{ store.user.user_metadata.name ?? '-' }}
                 </div>
             </div>
             <div class="pt-2">
@@ -34,7 +34,7 @@ const store = useSessionStore();
                     Email
                 </h2>
                 <div>
-                    {{ store.session.user?.email ?? '-' }}
+                    {{ store.user.user_metadata.email ?? '-' }}
                 </div>
             </div>
             <div class="pt-4">
