@@ -61,3 +61,6 @@ yarn preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Supabase
+https://supabase.com/docs/reference/cli/supabase-migration-repair
