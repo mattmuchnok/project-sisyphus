@@ -12,7 +12,7 @@ const thing: Ref<string> = ref("fulfillment")
                 Goals: books, current events, new skills, education, etc
             </li>
             <li>
-                Career: long term goals, short term goals, etc
+                Career: long term goals, short term goals, etc, work history
             </li>
             <li>
                 Rewards: vacations, gifts, etc

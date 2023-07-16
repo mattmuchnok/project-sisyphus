@@ -18,7 +18,7 @@ const thing: Ref<string> = ref("function")
                 cleaning: house, car, bathrooms, bed sheets, clothes, dishes
             </li>
             <li>
-                house: repairs, maintenance, etc
+                house: repairs, maintenance, etc, address history
             </li>
             <li>
                 car: repairs, maintenance, etc
