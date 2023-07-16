@@ -20,15 +20,11 @@ const dashboardLinks = [
 const appLinks = [{
   label: 'Faith',
   icon: 'i-heroicons-book-open',
-  to: '/faith'
+  to: '/faith/prayers'
 }, {
-  label: 'Family',
+  label: 'Family & Friends',
   icon: 'i-heroicons-user-circle',
   to: '/family'
-}, {
-  label: 'Friends',
-  icon: 'i-heroicons-user',
-  to: '/friends'
 }, {
   label: 'Finances',
   icon: 'i-heroicons-credit-card',
@@ -39,18 +35,28 @@ const appLinks = [{
   to: '/fitness'
 },
 {
+  label: 'Fulfillment',
+  icon: 'i-heroicons-face-smile',
+  to: '/fulfillment'
+},
+{
   label: 'Function',
   icon: 'i-heroicons-cog-6-tooth',
   to: '/function'
 }];
 
-const profileLinks = [{
-  label: 'Profile',
-  avatar: {
-    src: store.session.user?.image ?? '',
-  },
-  to: '/profile'
-}];
+const otherLinks = [
+  {
+    label: 'Settings',
+    icon: 'i-heroicons-cog',
+    to: '/settings'
+  }, {
+    label: 'Profile',
+    avatar: {
+      src: store.session.user?.image ?? '',
+    },
+    to: '/profile'
+  }];
 </script>
 
 <template>
@@ -60,13 +66,13 @@ const profileLinks = [{
     </div>
 
     <div class="full-container">
-      <main class="full-main flex flex-row gap-4 flex-wrap">
+      <main class="full-main flex flex-row gap-4 flex-wrap lg:flex-nowrap">
         <section class="flex-shrink min-w-[15%] pr-3">
           <UVerticalNavigation :links="dashboardLinks" />
           <hr class="my-3" />
           <UVerticalNavigation :links="appLinks" />
           <hr class="my-3" />
-          <UVerticalNavigation :links="profileLinks" />
+          <UVerticalNavigation :links="otherLinks" />
         </section>
         <section class="flex-grow">
           <NuxtPage />

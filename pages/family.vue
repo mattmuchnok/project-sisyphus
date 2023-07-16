@@ -1,10 +1,61 @@
 <script setup lang="ts">
 const thing: Ref<string> = ref("family")
+
+const people = [{
+    id: 1,
+    name: 'Lindsay Walton',
+    title: 'Front-end Developer',
+    email: 'lindsay.walton@example.com',
+    role: 'Member'
+}, {
+    id: 2,
+    name: 'Courtney Henry',
+    title: 'Designer',
+    email: 'courtney.henry@example.com',
+    role: 'Admin'
+}, {
+    id: 3,
+    name: 'Tom Cook',
+    title: 'Director of Product',
+    email: 'tom.cook@example.com',
+    role: 'Member'
+}, {
+    id: 4,
+    name: 'Whitney Francis',
+    title: 'Copywriter',
+    email: 'whitney.francis@example.com',
+    role: 'Admin'
+}, {
+    id: 5,
+    name: 'Leonard Krasner',
+    title: 'Senior Designer',
+    email: 'leonard.krasner@example.com',
+    role: 'Owner'
+}, {
+    id: 6,
+    name: 'Floyd Miles',
+    title: 'Principal Designer',
+    email: 'floyd.miles@example.com',
+    role: 'Member'
+}]
 </script>
 
 <template>
     <div>
-        {{ thing }}
+        <h2 class="my-2">
+            Family & Friends
+        </h2>
+        <div>
+            <ul>
+                <li>
+                    Person list: birthdays, anniversaries, etc.
+                </li>
+            </ul>
+        </div>
+        <div>
+            <a href="https://ui.nuxtlabs.com/data/table" class="text-green-500">Table</a>
+            <UTable :rows="people" />
+        </div>
     </div>
 </template>
 

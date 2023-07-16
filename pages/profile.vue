@@ -6,9 +6,9 @@ const store = useSessionStore();
 
 <template>
     <div>
-        <h1 class="my-2">
+        <h2 class="my-2">
             Profile
-        </h1>
+        </h2>
         <div class="flex items-center space-x-4" v-if="!store.session.user">
             <USkeleton class="h-12 w-12 rounded-full" />
             <div class="space-y-2">
