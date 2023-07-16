@@ -15,9 +15,9 @@ const links = [{
 
 <template>
     <div>
-        <h1 class="my-2">
+        <h2 class="my-2">
             Faith
-        </h1>
+        </h2>
         <div>
             <UVerticalNavigation :links="links" />
         </div>
