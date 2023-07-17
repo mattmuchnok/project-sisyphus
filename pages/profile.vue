@@ -12,7 +12,8 @@ const store = useSessionStore();
 
         <div v-if="store.user">
             <div>
-                <img :src="store.user.user_metadata.avatar_url ?? ''" size="3xl" alt="avatar" class="align-middle" />
+                <img :src="store.user.user_metadata.avatar_url ?? ''" size="3xl" alt="avatar"
+                    class="align-middle rounded-full w-20" />
             </div>
             <div class="pt-2">
                 <h2 class=" text-green-500">
