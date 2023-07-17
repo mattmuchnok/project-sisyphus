@@ -1,10 +1,10 @@
 import { Database } from '@/types/supabase'
 import type { Prayer } from 'types/supabase-tables';
 
+const prayers = ref<Prayer[]>([]);
+
 export const usePrayerStore = defineStore('prayer', () => {
     const client = useSupabaseClient<Database>();
-
-    const prayers = ref<Prayer[]>([]);
 
     async function getPrayers(): Promise<void> {
         let { data: result, error } = await client

@@ -7,15 +7,15 @@ export const useSessionStore = defineStore('session', () => {
         const { error } = await client.auth.signInWithOAuth({ provider: 'github' })
         if (error) {
             console.error(error.message);
+            return;
         }
-
-        router.push('/dashboard')
     }
 
     async function signOut(): Promise<void> {
         const { error } = await client.auth.signOut()
         if (error) {
             console.error(error.message);
+            return;
         }
 
         user.value = null;
