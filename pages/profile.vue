@@ -31,11 +31,6 @@ const store = useSessionStore();
                     {{ store.user.user_metadata.email ?? '-' }}
                 </div>
             </div>
-            <div class="pt-4">
-                <button @click="store.signOut()">
-                    Sign Out
-                </button>
-            </div>
         </div>
     </div>
 </template>
