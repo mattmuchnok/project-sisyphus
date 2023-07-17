@@ -63,4 +63,18 @@ yarn preview
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 ## Supabase
-https://supabase.com/docs/reference/cli/supabase-migration-repair
+
+### CLI
+https://supabase.com/docs/reference/cli/introduction
+
+### Create migration from local database
+https://supabase.com/docs/reference/cli/supabase-migration-new
+```
+supabase db diff | supabase migration new <name>
+```
+
+### Apply local db changes
+https://supabase.com/docs/reference/cli/supabase-db-push
+```
+supabase db push
+```

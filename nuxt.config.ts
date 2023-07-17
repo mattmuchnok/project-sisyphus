@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     // pageTransition: { name: 'page', mode: 'out-in' }
+    head: {
+      link: [{ rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' }]
+    }
   },
   modules: [
     '@pinia/nuxt',

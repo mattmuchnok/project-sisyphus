@@ -1,18 +1,8 @@
 <script setup lang="ts">
-const client = useSupabaseClient()
+import { usePrayerStore } from '@/store/prayer-store';
 
-
-let { data: prayers, error } = await client
-    .from('prayer')
-    .select('*')
-
-if (error) {
-    console.error(error);
-}
-
-// const prayers = data as any[];
-
-console.log(prayers);
+const store = usePrayerStore();
+store.getPrayers();
 </script>
 
 <template>
@@ -21,19 +11,13 @@ console.log(prayers);
             Prayers
         </h2>
         <div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio cupiditate doloremque quibusdam delectus
-                tempora
-                voluptates dignissimos quis, nemo non odit dicta tempore? Rerum sit, distinctio atque porro laborum
-                perferendis
-                voluptas!
-            </p>
+
         </div>
         <div>
             <a href="https://ui.nuxtlabs.com/layout/card" class="text-green-500">Cards</a>
-            <UCard v-for="prayer of prayers">
+            <UCard v-for="prayer of store.prayers">
                 <template #header>
-                    {{ prayer.id }}
+                    {{ prayer.for }}
                 </template>
                 {{ prayer.text }}
                 <template #footer>
