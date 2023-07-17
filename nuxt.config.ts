@@ -9,7 +9,6 @@ export default defineNuxtConfig({
   },
   modules: [
     '@pinia/nuxt',
-    '@nuxthq/ui',
     '@nuxtjs/supabase',
   ],
   css: ['~/assets/css/main.css'],
@@ -26,5 +25,11 @@ export default defineNuxtConfig({
     autoImports: [
       'defineStore'
     ],
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
   },
 })

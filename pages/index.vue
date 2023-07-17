@@ -15,12 +15,12 @@ watchEffect(() => {
     <div class="flex flex-row w-full max-w-3xl m-auto">
         <div class="flex-shrink self-center cursor-pointer">
             <div class="h-full text-center">
-                <UButton @click="session.signIn()" color="white">
+                <button @click="session.signIn()" color="white">
                     Log In
-                </UButton>
-                <UButton @click="session.signIn()" class="ml-3">
+                </button>
+                <button @click="session.signIn()" class="ml-3">
                     Sign Up
-                </UButton>
+                </button>
             </div>
         </div>
     </div>

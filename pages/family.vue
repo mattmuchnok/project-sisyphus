@@ -52,10 +52,6 @@ const people = [{
                 </li>
             </ul>
         </div>
-        <div>
-            <a href="https://ui.nuxtlabs.com/data/table" class="text-green-500">Table</a>
-            <UTable :rows="people" />
-        </div>
     </div>
 </template>
 

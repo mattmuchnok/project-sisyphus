@@ -7,23 +7,19 @@ store.getPrayers();
 
 <template>
     <div>
-        <h2 class="my-2">
-            Prayers
-        </h2>
-        <div>
-
-        </div>
         <div>
             <a href="https://ui.nuxtlabs.com/layout/card" class="text-green-500">Cards</a>
-            <UCard v-for="prayer of store.prayers">
-                <template #header>
+            <div v-for="prayer of store.prayers">
+                <div>
                     {{ prayer.for }}
-                </template>
-                {{ prayer.text }}
-                <template #footer>
+                </div>
+                <div>
+                    {{ prayer.text }}
+                </div>
+                <div>
                     Ok
-                </template>
-            </UCard>
+                </div>
+            </div>
         </div>
     </div>
 </template>
