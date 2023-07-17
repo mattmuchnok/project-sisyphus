@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
+const router = useRouter();
 const rootPath = computed(() => {
     const root = '/' + route.path.split('/')[2];
     if (root === '/') return '--';
@@ -12,6 +13,13 @@ const tabs = [
     { name: 'Devotional Journal', href: '/faith/devotional' },
     { name: 'Acts of Service', href: '/faith/acts-of-service' }
 ];
+
+const onSelectChange = (event: Event) => {
+    const el = event.target as HTMLSelectElement;
+    const value = el.value;
+
+    router.push(value);
+}
 </script>
 
 <template>
@@ -21,10 +29,10 @@ const tabs = [
         </h2>
         <div class="sm:hidden">
             <label for="tabs" class="sr-only">Select a tab</label>
-            <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-            <select id="tabs" name="tabs"
+            <select id="tabs" name="tabs" @change="onSelectChange($event)"
                 class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-green-500 focus:outline-none focus:ring-green-500 sm:text-sm">
-                <option v-for="tab in tabs" :key="tab.name" :selected="tab.href.includes(rootPath)">{{ tab.name }}</option>
+                <option v-for="tab in tabs" :key="tab.href" :selected="tab.href.includes(rootPath)" :value="tab.href">{{
+                    tab.name }}</option>
             </select>
         </div>
         <div class="hidden sm:block">
