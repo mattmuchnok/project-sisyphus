@@ -99,7 +99,7 @@ const sidebarOpen = ref(false)
                         </ul>
                       </li>
                       <li class="mt-auto">
-                        <a href="#"
+                        <a href="/settings"
                           class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-green-200 hover:bg-green-700 hover:text-white">
                           <Cog6ToothIcon class="h-6 w-6 shrink-0 text-green-200 group-hover:text-white"
                             aria-hidden="true" />
@@ -138,7 +138,7 @@ const sidebarOpen = ref(false)
                 </ul>
               </li>
               <li class="mt-auto">
-                <a href="#"
+                <a href="settings"
                   class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-green-200 hover:bg-green-700 hover:text-white">
                   <CogIcon class="h-6 w-6 shrink-0 text-green-200 group-hover:text-white" aria-hidden="true" />
                   Settings
