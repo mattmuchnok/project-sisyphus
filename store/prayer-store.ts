@@ -1,4 +1,5 @@
 import { Database } from '@/types/supabase'
+import { get } from 'http';
 import type { Prayer } from 'types/supabase-tables';
 
 const prayers = ref<Prayer[]>([]);
@@ -13,6 +14,7 @@ export const usePrayerStore = defineStore('prayer', () => {
 
         if (error) {
             console.error(error.message);
+            return;
         }
 
         prayers.value = result ?? [];
@@ -26,9 +28,10 @@ export const usePrayerStore = defineStore('prayer', () => {
 
         if (error) {
             console.error(error.message);
+            return;
         }
 
-        prayers.value = result ?? [];
+        getPrayers();
     }
 
     async function deletePrayer(prayer: Prayer): Promise<void> {
@@ -40,10 +43,25 @@ export const usePrayerStore = defineStore('prayer', () => {
 
         if (error) {
             console.error(error.message);
+            return;
         }
 
-        prayers.value = result ?? [];
+        prayers.value = prayers.value.filter(p => p.id !== prayer.id);
     }
 
-    return { prayers, getPrayers, upsertPrayer, deletePrayer };
+    async function searchPrayers(query: string): Promise<Prayer[]> {
+        const { data: result, error } = await client
+            .from('prayer')
+            .select()
+            .textSearch('text', `'health'`)
+
+        if (error) {
+            console.error(error.message);
+            return [];
+        }
+
+        return result ?? [];
+    }
+
+    return { prayers, getPrayers, upsertPrayer, deletePrayer, searchPrayers };
 })
