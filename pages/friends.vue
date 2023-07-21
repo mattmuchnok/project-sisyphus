@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const thing: Ref<string> = ref("friends")
+definePageMeta({
+    middleware: 'auth'
+})
 </script>
 
 <template>
     <div>
-        {{ thing }}
+        Friends - NOT USED RIGHT NOW, SEE FAMILY
     </div>
 </template>
 

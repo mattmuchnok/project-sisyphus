@@ -20,6 +20,10 @@ const onSelectChange = (event: Event) => {
 
     router.push(value);
 }
+
+definePageMeta({
+    middleware: 'auth'
+})
 </script>
 
 <template>

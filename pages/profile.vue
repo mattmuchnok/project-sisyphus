@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useSessionStore } from '@/store/session-store';
-
 const store = useSessionStore();
+
+definePageMeta({
+    middleware: 'auth'
+})
 </script>
 
 <template>

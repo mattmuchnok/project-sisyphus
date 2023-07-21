@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import { useSessionStore } from '@/store/session-store';
 
+const router = useRouter();
 const sessionStore = useSessionStore();
-const layout = ref('default');
-
-watchEffect(() => {
-  if (!sessionStore.user) {
-    layout.value = 'public';
-  } else {
-    layout.value = 'default';
-  }
-});
 </script>
 
 <template>
-  <NuxtLayout :name="layout">
+  <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
 </template>

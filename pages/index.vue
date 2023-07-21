@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { useSessionStore } from '@/store/session-store';
-
-const router = useRouter();
 const session = useSessionStore();
+const router = useRouter();
+
+definePageMeta({
+    layout: "public",
+});
 
 watchEffect(() => {
     if (session.user) {
-        router.push('/dashboard');
-    } else {
-        router.push('/');
+        router.push("/dashboard");
     }
 });
 
@@ -19,7 +20,7 @@ useHead({
     bodyAttrs: {
         class: "h-full",
     },
-})
+});
 </script>
 
 <template>
@@ -110,7 +111,7 @@ useHead({
                 </div>
             </div>
         </div>
-        <div class="relative hidden w-0 max-w-xl flex-1 lg:block">
+        <div class="relative hidden w-0 flex-1 lg:block">
             <img class="absolute inset-0 h-full w-full object-cover" src="@/assets/img/push.jpeg" alt="push" />
         </div>
     </div>

@@ -20,7 +20,7 @@ export const useSessionStore = defineStore('session', () => {
 
         user.value = null;
 
-        router.push('/')
+        router.push('/');
     }
 
     return { user, signIn, signOut };
