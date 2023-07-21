@@ -7,25 +7,111 @@ const session = useSessionStore();
 watchEffect(() => {
     if (session.user) {
         router.push('/dashboard');
+    } else {
+        router.push('/');
     }
 });
+
+useHead({
+    htmlAttrs: {
+        class: "h-full bg-white",
+    },
+    bodyAttrs: {
+        class: "h-full",
+    },
+})
 </script>
 
 <template>
-    <div class="flex flex-row w-full max-w-3xl m-auto">
-        <div class="flex-shrink self-center cursor-pointer">
-            <div class="h-full text-center">
-                <button type="button" @click="session.signIn()"
-                    class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2">
-                    <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    Sign in with Github
-                </button>
+    <div class="flex min-h-full flex-1 justify-center">
+        <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+            <div class="mx-auto w-full max-w-sm lg:w-96">
+                <div>
+                    <div>
+                        <span>project</span>
+                        <span class="font-bold text-xl">sisyphus</span>
+                    </div>
+                    <h2 class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account
+                    </h2>
+                    <p class="mt-2 text-sm leading-6 text-gray-500">
+                        Not a member?
+                        {{ ' ' }}
+                        <a href="#" class="font-semibold text-green-600 hover:text-green-500">Start a 14 day free
+                            trial</a>
+                    </p>
+                </div>
+
+                <div class="mt-10">
+                    <div>
+                        <form action="#" method="POST" class="space-y-6">
+                            <div>
+                                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
+                                    address</label>
+                                <div class="mt-2">
+                                    <input id="email" name="email" type="email" autocomplete="email" required
+                                        class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="password"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                                <div class="mt-2">
+                                    <input id="password" name="password" type="password" autocomplete="current-password"
+                                        required
+                                        class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6" />
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember-me" name="remember-me" type="checkbox"
+                                        class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-600" />
+                                    <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-700">Remember
+                                        me</label>
+                                </div>
+
+                                <div class="text-sm leading-6">
+                                    <a href="#" class="font-semibold text-green-600 hover:text-green-500">Forgot
+                                        password?</a>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit"
+                                    class="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Sign
+                                    in</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="mt-10">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                                <div class="w-full border-t border-gray-200" />
+                            </div>
+                            <div class="relative flex justify-center text-sm font-medium leading-6">
+                                <span class="bg-white px-6 text-gray-900">Or continue with</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-1 gap-4">
+                            <a href="javascript:;" @click="session.signIn()"
+                                class="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]">
+                                <svg class="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm font-semibold leading-6">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="relative hidden w-0 max-w-xl flex-1 lg:block">
+            <img class="absolute inset-0 h-full w-full object-cover" src="@/assets/img/push.jpeg" alt="push" />
         </div>
     </div>
 </template>
