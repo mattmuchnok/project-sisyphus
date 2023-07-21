@@ -1,5 +1,4 @@
 export const useSessionStore = defineStore('session', () => {
-    const router = useRouter()
     const user = useSupabaseUser()
     const client = useSupabaseAuthClient()
 
@@ -20,7 +19,7 @@ export const useSessionStore = defineStore('session', () => {
 
         user.value = null;
 
-        router.push('/');
+        navigateTo('/');
     }
 
     return { user, signIn, signOut };

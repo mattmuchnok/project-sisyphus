@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const people = [
     { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-    // More people...
-
-    definePageMeta({
-        middleware: 'auth'
-    })
+    // More people..
 ]
+
+definePageMeta({
+    middleware: 'auth'
+})
 </script>
 
 <template>

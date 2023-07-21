@@ -1,118 +1,131 @@
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue'
+import { Dialog, DialogPanel } from '@headlessui/vue'
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { useSessionStore } from '@/store/session-store';
 const session = useSessionStore();
-const router = useRouter();
+
+watchEffect(() => {
+    if (session.user) {
+        navigateTo("/dashboard");
+    }
+});
+
+const navigation = [
+    { name: 'Product', href: '#' },
+    { name: 'Features', href: '#' },
+    { name: 'Marketplace', href: '#' },
+    { name: 'Company', href: '#' },
+]
+
+const mobileMenuOpen = ref(false)
+
+const login = () => {
+    navigateTo('/login');
+}
 
 definePageMeta({
     layout: "public",
 });
-
-watchEffect(() => {
-    if (session.user) {
-        router.push("/dashboard");
-    }
-});
-
-useHead({
-    htmlAttrs: {
-        class: "h-full bg-white",
-    },
-    bodyAttrs: {
-        class: "h-full",
-    },
-});
 </script>
 
 <template>
-    <div class="flex min-h-full flex-1 justify-center">
-        <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-            <div class="mx-auto w-full max-w-sm lg:w-96">
-                <div>
-                    <div>
-                        <span>project</span>
-                        <span class="font-bold text-xl">sisyphus</span>
-                    </div>
-                    <h2 class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account
-                    </h2>
-                    <p class="mt-2 text-sm leading-6 text-gray-500">
-                        Not a member?
-                        {{ ' ' }}
-                        <a href="#" class="font-semibold text-green-600 hover:text-green-500">Start a 14 day free
-                            trial</a>
-                    </p>
+    <div class="bg-white">
+        <header class="absolute inset-x-0 top-0 z-50">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <div>
+                            <span>project</span>
+                            <span class="font-bold text-xl">sisyphus</span>
+                        </div>
+                    </a>
                 </div>
-
-                <div class="mt-10">
-                    <div>
-                        <form action="#" method="POST" class="space-y-6">
-                            <div>
-                                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
-                                    address</label>
-                                <div class="mt-2">
-                                    <input id="email" name="email" type="email" autocomplete="email" required
-                                        class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6" />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="password"
-                                    class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                                <div class="mt-2">
-                                    <input id="password" name="password" type="password" autocomplete="current-password"
-                                        required
-                                        class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6" />
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <input id="remember-me" name="remember-me" type="checkbox"
-                                        class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-600" />
-                                    <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-700">Remember
-                                        me</label>
-                                </div>
-
-                                <div class="text-sm leading-6">
-                                    <a href="#" class="font-semibold text-green-600 hover:text-green-500">Forgot
-                                        password?</a>
-                                </div>
-                            </div>
-
-                            <div>
-                                <button type="submit"
-                                    class="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Sign
-                                    in</button>
-                            </div>
-                        </form>
+                <div class="flex lg:hidden">
+                    <button type="button"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                        @click="mobileMenuOpen = true">
+                        <span class="sr-only">Open main menu</span>
+                        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+                    </button>
+                </div>
+                <div class="hidden lg:flex lg:gap-x-12">
+                    <a v-for="item in navigation" :key="item.name" :href="item.href"
+                        class="text-sm font-semibold leading-6 text-gray-900">{{ item.name }}</a>
+                </div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="javascript:;" @click="login()" class="text-sm font-semibold leading-6 text-gray-900">Log in
+                        <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </nav>
+            <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
+                <div class="fixed inset-0 z-50" />
+                <DialogPanel
+                    class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="-m-1.5 p-1.5">
+                            <span class="sr-only">Your Company</span>
+                            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600"
+                                alt="" />
+                        </a>
+                        <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = false">
+                            <span class="sr-only">Close menu</span>
+                            <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+                        </button>
                     </div>
-
-                    <div class="mt-10">
-                        <div class="relative">
-                            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                                <div class="w-full border-t border-gray-200" />
+                    <div class="mt-6 flow-root">
+                        <div class="-my-6 divide-y divide-gray-500/10">
+                            <div class="space-y-2 py-6">
+                                <a v-for="item in navigation" :key="item.name" :href="item.href"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{
+                                        item.name }}</a>
                             </div>
-                            <div class="relative flex justify-center text-sm font-medium leading-6">
-                                <span class="bg-white px-6 text-gray-900">Or continue with</span>
+                            <div class="py-6">
+                                <a href="#"
+                                    class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
+                                    in</a>
                             </div>
                         </div>
+                    </div>
+                </DialogPanel>
+            </Dialog>
+        </header>
 
-                        <div class="mt-6 grid grid-cols-1 gap-4">
-                            <a href="javascript:;" @click="session.signIn()"
-                                class="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]">
-                                <svg class="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-sm font-semibold leading-6">GitHub</span>
-                            </a>
-                        </div>
+        <div class="relative isolate px-6 pt-14 lg:px-8">
+            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+                aria-hidden="true">
+                <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#4abe15] to-[#29692f] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" />
+            </div>
+            <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+                    <div
+                        class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        Announcing our next round of funding. <a href="#" class="font-semibold text-green-600"><span
+                                class="absolute inset-0" aria-hidden="true" />Read more <span
+                                aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                        Shoulder to the boulder
+                    </h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui
+                        irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                        <a href="javascript:;" @click="login()"
+                            class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Get
+                            started</a>
+                        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span
+                                aria-hidden="true">→</span></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="relative hidden w-0 flex-1 lg:block">
-            <img class="absolute inset-0 h-full w-full object-cover" src="@/assets/img/push.jpeg" alt="push" />
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#4abe15] to-[#29692f] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" />
+            </div>
         </div>
     </div>
 </template>

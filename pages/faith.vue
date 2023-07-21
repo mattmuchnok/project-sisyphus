@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const route = useRoute();
-const router = useRouter();
 const rootPath = computed(() => {
     const root = '/' + route.path.split('/')[2];
     if (root === '/') return '--';
@@ -18,7 +17,7 @@ const onSelectChange = (event: Event) => {
     const el = event.target as HTMLSelectElement;
     const value = el.value;
 
-    router.push(value);
+    navigateTo(value);
 }
 
 definePageMeta({
