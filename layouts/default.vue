@@ -79,7 +79,10 @@ const sidebarOpen = ref(false);
                             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-green-600 px-6 pb-4">
                                 <div class="flex h-16 shrink-0 items-center">
                                     <NuxtLink to="/">
-                                        <h2 class="text-white">project sisyphus</h2>
+                                        <div class="text-white">
+                                            <span>project</span>
+                                            <span class="font-bold text-xl">sisyphus</span>
+                                        </div>
                                     </NuxtLink>
 
                                 </div>
@@ -120,7 +123,10 @@ const sidebarOpen = ref(false);
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-green-600 px-6 pb-4">
                 <div class="flex h-16 shrink-0 items-center">
                     <NuxtLink to="/">
-                        <h2 class="text-white">project sisyphus</h2>
+                        <div class="text-white">
+                            <span>project</span>
+                            <span class="font-bold text-xl">sisyphus</span>
+                        </div>
                     </NuxtLink>
                 </div>
                 <nav class="flex flex-1 flex-col">
