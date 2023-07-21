@@ -2,8 +2,6 @@
 import { ref } from 'vue'
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
-import { useSessionStore } from '@/store/session-store';
-const session = useSessionStore();
 
 const navigation = [
     { name: 'Product', href: '#' },
@@ -13,10 +11,6 @@ const navigation = [
 ]
 
 const mobileMenuOpen = ref(false)
-
-const login = () => {
-    navigateTo('/login');
-}
 
 definePageMeta({
     layout: "public",
@@ -48,7 +42,7 @@ definePageMeta({
                         class="text-sm font-semibold leading-6 text-gray-900">{{ item.name }}</a>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="javascript:;" @click="login()" class="text-sm font-semibold leading-6 text-gray-900">Log in
+                    <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in
                         <span aria-hidden="true">&rarr;</span></a>
                 </div>
             </nav>
@@ -108,7 +102,7 @@ definePageMeta({
                     <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui
                         irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="javascript:;" @click="login()"
+                        <a href="/login"
                             class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Get
                             started</a>
                         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span
