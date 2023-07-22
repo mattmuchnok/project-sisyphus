@@ -8,7 +8,9 @@ const prayerStore = usePrayerStore();
 const sessionStore = useSessionStore();
 
 const prayer: Prayer = ref({
-    user_id: sessionStore.user?.id
+    user_id: sessionStore.user?.id,
+    for: null,
+    text: null
 })
 
 const modal = ref<ModalInterface>();
